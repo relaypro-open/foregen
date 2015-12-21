@@ -1,0 +1,18 @@
+Package: foregen
+Type: Package
+Title: foregen - (fo)recast (re)gressor (gen)erator
+Version: 1.0.0
+Authors@R: person("Willy", "Hardy", email = "wjhrdy@gmail.com",
+  role = c("aut", "cre"))
+Description: It makes a data.frame that can be input into the xreg
+    argument as used in the forecast package. Also has 2 functions to help in creating
+    regressors from a table of events.
+URL: https://github.com/wjhrdy/foregen
+BugReports: https://github.com/wjhrdy/foregen/issues
+License: MIT
+LazyData: TRUE
+Imports:
+    forecast,
+    methods
+RoxygenNote: 5.0.1
+
