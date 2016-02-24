@@ -73,11 +73,17 @@ table_to_events <- function(regressors_table) {
 events_to_regressors <- function(events, dates, h = NULL, seasonal=T, time_series = NULL, K=3) {
   if (seasonal == T & !is.null(time_series)) {
     requireNamespace("forecast", quietly = TRUE)
-    if (is.null(h)) {
-      regressors <- forecast::fourier(time_series, K=K)
-    } else {
-      regressors <- forecast::fourierf(time_series, K=K, h)
+    if (packageVersion("forecast") < "7") {
+      if (is.null(h)) {
+        regressors <- forecast::fourier(time_series, K=K)
+      } else {
+        regressors <- forecast::fourierf(time_series, K=K, h)
+      }
     }
+    else {
+      regressors <- forecast::fourier(time_series, K=K, h)
+    }
+
     for (i in 1:length(events)) {
       df <- data.frame(events[[i]]$regressor(dates))
       names(df) <- names(events)[i]
